@@ -1,11 +1,4 @@
-# = 주석
-#.gitignore
-# 질문할것...
-#  왜 .java file을 push하는지?? 
-# .class file을 push하면 jre만 있어도 실행가능한데?
-# ++jdk(compiler version)이 다르면 .java를 compile하는데 오류날 수 도 있는데
-#  A. 내가 만든 source file을 compile해서 .class file을 만들면 서버쪽 JDK가 버전이 낮을 수 도 있기 때문에 
-#     source file만 공유함. + 어떤것에 의해 자동생성되는것은(ex .class file)은 share하는게 아님..
+
 *.class
 node_modules/
 .vscode/
