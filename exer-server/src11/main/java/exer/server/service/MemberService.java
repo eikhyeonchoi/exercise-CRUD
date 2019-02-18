@@ -1,8 +1,34 @@
 package exer.server.service;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import exer.server.domain.Member;
 
 public class MemberService extends AbstractService<Member>{
   
+  @SuppressWarnings("unchecked")
+  public void loadData(String filePath) {
+    try (ObjectInputStream out = new ObjectInputStream(
+        new BufferedInputStream(new FileInputStream(filePath))); ){
+      list = (ArrayList<Member>) in.readObject();
+    } catch(Exception e) {
+      System.out.println("Member 데이터 로드중 오류발생 " + e.getMessage());
+      list = new ArrayList<Member>();
+    }
+  } // loadData
+  
+  public void saveData(String filePath) {
+    try (ObjectOutputStream out = new ObjectOutputStream(
+        new BufferedOutputStream(new FileOutputStream(filePath))); ){
+      out.writeObject(list);
+    } catch(Exception e) {
+      System.out.println("데이터 저장중 오류발생 " + e.getMessage());
+    }
+  } // saveData
   
   public void service(String response) throws Exception{
     switch(response) {

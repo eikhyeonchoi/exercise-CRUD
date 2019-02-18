@@ -40,18 +40,18 @@ public class BoardTest  {
   private void detail(int no) throws Exception{
     out.writeUTF("/board/detail"); out.flush();
     out.writeInt(no); out.flush();
-    Board board = (Board) in.readObject();
-    if(board == null) {
+    Board Board = (Board) in.readObject();
+    if(Board == null) {
       System.out.println("FAIL");
-    } else System.out.println(board);
+    } else System.out.println(Board);
   } // detail
 
   @SuppressWarnings("unchecked")
   private void list() throws Exception {
     out.writeUTF("/board/list"); out.flush();
     List<Board> list = (List<Board>) in.readObject();
-    for(Board board : list) {
-      System.out.println(board);
+    for(Board Board : list) {
+      System.out.println(Board);
     }
 
   } // list

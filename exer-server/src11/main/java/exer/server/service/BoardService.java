@@ -1,7 +1,36 @@
 package exer.server.service;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 import exer.server.domain.Board;
 
 public class BoardService extends AbstractService<Board> {
+
+  @SuppressWarnings("unchecked")
+  public void loadData(String filePath) {
+    try (ObjectInputStream out = new ObjectInputStream(
+        new BufferedInputStream(new FileInputStream(filePath))); ){
+      this.list = (List<Board>) in.readObject();
+    } catch(Exception e) {
+      System.out.println("Board 데이터 로드중 오류발생 " + e.getMessage());
+      this.list = new ArrayList<Board>();
+    }
+  } // loadData
+  
+  public void saveData(String filePath) {
+    try (ObjectOutputStream out = new ObjectOutputStream(
+        new BufferedOutputStream(new FileOutputStream(filePath))); ){
+      out.writeObject(this.list);
+    } catch(Exception e) {
+      System.out.println("데이터 저장중 오류발생 " + e.getMessage());
+    }
+  } // saveData
+  
   
   public void service(String response) throws Exception{
     switch(response) {
@@ -22,9 +51,13 @@ public class BoardService extends AbstractService<Board> {
         break;
       default :
         out.writeUTF("해당 명령어는 지원하지 않습니다");
+        
     } // swtich
+    
     out.flush();
+    
   } // main
+  
   
   private void add() throws Exception {
     this.list.add((Board) in.readObject());
@@ -40,6 +73,7 @@ public class BoardService extends AbstractService<Board> {
         return;
       }
     } // for
+
     out.writeObject(null);
   } // detail
 
@@ -78,5 +112,8 @@ public class BoardService extends AbstractService<Board> {
     } // for
     out.writeUTF("update FAIL");
   } // update
+  
+  
+  
 
 } // end of class

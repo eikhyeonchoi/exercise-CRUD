@@ -1,6 +1,5 @@
 package exer.server.domain;
 import java.io.Serializable;
-
 import java.sql.Date;
 
 public class Board implements Cloneable, Serializable {

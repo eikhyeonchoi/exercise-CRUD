@@ -1,8 +1,9 @@
 package exer.server;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.net.Socket;
 import java.util.ArrayList;
-import java.util.List;
+import exer.server.domain.Lesson;
 import exer.server.domain.Lesson;
 
 public class LessonTest  {
@@ -18,17 +19,17 @@ public class LessonTest  {
     add(new Lesson(111, "첫번째 제목"));
     add(new Lesson(222, "두번째 제목"));
     add(new Lesson(333, "익콩이 제목"));
-//    detail(111);
-//    System.out.println("--------------"통신중 오류 발생 null);
-//    list();
-//    System.out.println("--------------");
-//    delete(222);
-//    update(new Lesson(333, "변경된 제목"));
+    detail(111);
+    System.out.println("--------------");
+    list();
+    System.out.println("--------------");
+    delete(222);
+    update(new Lesson(333, "변경된 제목"));
     list();
   } // service
 
 
-  public void add(Lesson lesson) throws Exception{
+  public  void add(Lesson lesson) throws Exception{
     out.writeUTF("/lesson/add"); out.flush();
     out.writeObject(lesson);
     String response = in.readUTF();
@@ -37,21 +38,21 @@ public class LessonTest  {
     } else System.out.println("FAIL");
   } // add
 
-  public void detail(int no) throws Exception{
+  public  void detail(int no) throws Exception{
     out.writeUTF("/lesson/detail"); out.flush();
     out.writeInt(no); out.flush();
-    Lesson lesson = (Lesson) in.readObject();
-    if(lesson == null) {
+    Lesson Lesson = (Lesson) in.readObject();
+    if(Lesson == null) {
       System.out.println("FAIL");
-    } else System.out.println(lesson);
+    } else System.out.println(Lesson);
   } // detail
 
   @SuppressWarnings("unchecked")
-  public void list() throws Exception {
+  public  void list() throws Exception {
     out.writeUTF("/lesson/list"); out.flush();
     ArrayList<Lesson> list = (ArrayList<Lesson>) in.readObject();
-    for(Lesson lesson : list) {
-      System.out.println(lesson);
+    for(Lesson Lesson : list) {
+      System.out.println(Lesson);
     }
   } // list
 

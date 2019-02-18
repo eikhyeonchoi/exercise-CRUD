@@ -62,7 +62,6 @@ public class ServerApp {
           System.out.println("server : 클라이언트와 연결을 끊었음");
         } catch (Exception e) {
           System.out.println("통신중 오류 발생 " + e.getMessage());
-          e.printStackTrace();
         }
       } // while
     } catch (Exception e) {

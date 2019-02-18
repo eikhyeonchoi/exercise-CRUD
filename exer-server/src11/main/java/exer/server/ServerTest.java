@@ -2,6 +2,8 @@ package exer.server;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
+import exer.server.domain.Member;
 
 public class ServerTest {
   static ObjectOutputStream out = null;
