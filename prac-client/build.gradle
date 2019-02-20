@@ -29,4 +29,4 @@ dependencies {
 }
 
 // Define the main class for the application
-mainClassName = 'prac.client.App'
+mainClassName = 'com.eikhyeon.App'
