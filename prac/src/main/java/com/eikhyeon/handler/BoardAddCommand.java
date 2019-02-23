@@ -1,6 +1,4 @@
 package com.eikhyeon.handler;
-import java.io.BufferedReader;
-import java.io.PrintWriter;
 import java.util.Scanner;
 import com.eikhyeon.dao.BoardDao;
 import com.eikhyeon.domain.Board;

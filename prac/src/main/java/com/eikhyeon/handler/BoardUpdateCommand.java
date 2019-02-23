@@ -17,7 +17,7 @@ public class BoardUpdateCommand implements Command {
   @Override
   public void execute() {
     try {
-      System.out.println("번호 ? : ");
+      System.out.print("번호 ? : ");
       Board board = boardDao.findByNo(
           Integer.parseInt(keyboard.nextLine()));
       if(board == null) {
@@ -26,8 +26,8 @@ public class BoardUpdateCommand implements Command {
       }
      
       Board clone = board.clone();
-      
-      System.out.println("새로운 내용? (엔터시 기존내용): ");
+      System.out.println("#update = 엔터시 기존값이 재사용됩니다");
+      System.out.print("내용? : ");
       String contents = keyboard.nextLine();
       clone.setContents(contents.length() > 0 ? contents : board.getContents());
       
