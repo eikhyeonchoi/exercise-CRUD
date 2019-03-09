@@ -9,7 +9,7 @@ Personal Project for CRUD Exercise
    서버의 기능을 추가하더라도 클라이언트는 손대지 않아도 되는 Achitecture Programming
 
 #project 'prac'
-Application Server Architecture의 발전 과정중 3번 연습
+1. Application Server Architecture의 발전 과정중 3번 연습
 
 #project 'prac-server' & 'prac-client'
-Application Server Architecture의 발전 과정중 4번 연습
+1. Application Server Architecture의 발전 과정중 4번 연습

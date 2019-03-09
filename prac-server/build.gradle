@@ -27,6 +27,9 @@ dependencies {
     compile group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.4.0'
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
+    // https://mvnrepository.com/artifact/org.mybatis/mybatis
+    compile group: 'org.mybatis', name: 'mybatis', version: '3.5.0'
+
 }
 
 // Define the main class for the application

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="MemberMapper">
+
+  <resultMap type="member" id="memberMap">
+    <id     column="member_id"  property="no"/>
+    <result column="name"       property="name"/>
+    <result column="email"      property="email"/>
+    <result column="pwd"        property="password"/>
+    <result column="photo"      property="photo"/>
+    <result column="tel"        property="tel"/>
+    <result column="cdt"        property="registeredDate"/>
+  </resultMap>
+
+  <select id="findAll" resultMap="memberMap">
+	  select 
+	   member_id, 
+	   name, 
+	   email, 
+	   tel 
+	  from 
+	   lms_member
+	  order by 
+	   name asc
+  </select>
+  
+  <select id="findByKeyword" resultMap="memberMap" parameterType="string">
+    select 
+      member_id, 
+      name, 
+      email, 
+      tel 
+    from 
+      lms_member
+    <where>
+      <if test="value != null">name like concat('%', #{value}, '%')</if>
+      <if test="value != null">or email like concat('%', #{value}, '%')</if>
+      <if test="value != null">or tel like concat('%', #{value}, '%')</if>
+    </where>
+    order by name asc
+  </select>
+  
+  <insert id="insert" parameterType="board">
+	  insert into 
+		  lms_member(
+		  name,
+		  email,
+		  pwd,
+		  tel,
+		  photo)
+	  values(
+		  #{name},
+		  #{email},
+		  password(#{password}),
+		  #{tel},
+		  #{photo})
+  </insert>
+  
+  <select id="findByNo" resultMap="memberMap" parameterType="int">
+	  select 
+		  member_id, 
+		  name, 
+		  email,
+		  cdt, 
+		  tel, 
+		  photo 
+	  from 
+		  lms_member
+	  where 
+	    member_id = #{value}
+  </select>
+  
+  
+  <delete id="delete" parameterType="int">
+	  delete from 
+	    lms_member 
+	  where 
+	    member_id = #{value}
+  </delete>
+  
+  <update id="update" parameterType="member">
+	  update lms_member 
+	  <set>
+		  <if test="name != null">name = #{name},</if> 
+		  <if test="email != null">email = #{email},</if> 
+		  <if test="password != null">pwd = password(#{password}),</if> 
+		  <if test="registeredDate != null">cdt = #{registeredDate},</if> 
+		  <if test="tel != null">tel = #{tel},</if> 
+		  <if test="photo != null">photo = #{photo}</if>
+		</set>
+	  where 
+		  member_id = #{no}
+  </update>
+  
+  
+</mapper>
