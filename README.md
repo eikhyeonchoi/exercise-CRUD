@@ -14,5 +14,5 @@ Personal Project for CRUD Exercise
 #project 'prac-server' & 'prac-client'
 1. Application Server Architecture의 발전 과정중 4번 연습
    - prac-server
-      - ~ src13 : JDBC
+      - ~ src12 : JDBC
       - src13 ~ : Mybatis 
